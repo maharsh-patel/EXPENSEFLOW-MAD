@@ -74,8 +74,13 @@ class Graph : AppCompatActivity() {
         )
 
         val dataSet = BarDataSet(barEntries, "Expenses").apply {
-            valueTextSize = 11f
-            valueTextColor = Color.DKGRAY
+            valueTextSize = 12f
+            valueTextColor = Color.parseColor("#1A237E")
+            valueFormatter = object : com.github.mikephil.charting.formatter.ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return "$${value.toInt()}"
+                }
+            }
             val repeated = mutableListOf<Int>()
             repeat((transactions.size / colors.size) + 1) { repeated.addAll(colors) }
             this.colors = repeated.take(transactions.size)
@@ -84,42 +89,36 @@ class Graph : AppCompatActivity() {
         barChart.data = BarData(dataSet).apply { barWidth = 0.5f }
         barChart.apply {
             description.isEnabled = false
-            axisLeft.apply {
-                textColor = Color.DKGRAY
-                isInverted = true // Invert Y-axis to match the downward bars in the screenshot
-                axisMinimum = 0f
-            }
             axisRight.isEnabled = false
             legend.isEnabled = false
             setFitBars(true)
-            extraBottomOffset = 30f // Increased space for category titles at the bottom
+            extraBottomOffset = 25f
+            extraTopOffset = 20f
+
+            axisLeft.apply {
+                textColor = Color.DKGRAY
+                axisMinimum = 0f
+                isInverted = false
+                setDrawGridLines(true)
+            }
 
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
-                textColor = Color.DKGRAY
+                textColor = Color.parseColor("#1A237E")
                 textSize = 12f
                 granularity = 1f
                 isGranularityEnabled = true
-                setDrawGridLines(false) // Cleaner look for category labels
-                setDrawLabels(true)
-                // Use the custom formatter to show transaction titles
-                valueFormatter = XAxisValueFormatter(transactions)
-                labelCount = transactions.size
+                setDrawGridLines(false)
+                setDrawAxisLine(true)
+                valueFormatter = object : com.github.mikephil.charting.formatter.ValueFormatter() {
+                    override fun getFormattedValue(value: Float): String {
+                        val index = value.toInt()
+                        return if (index in transactions.indices) transactions[index].title else ""
+                    }
+                }
             }
-            animateY(600)
+            animateY(700)
             invalidate()
-        }
-    }
-}
-
-class XAxisValueFormatter(private val transactions: List<Transaction>) :
-    com.github.mikephil.charting.formatter.IndexAxisValueFormatter() {
-    override fun getFormattedValue(value: Float, axis: AxisBase?): String? {
-        val index = Math.round(value)
-        return if (index >= 0 && index < transactions.size) {
-            transactions[index].title
-        } else {
-            ""
         }
     }
 }
