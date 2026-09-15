@@ -80,4 +80,9 @@ The resulting APK is generated at:
 
 - **Project Name:** ExpenseFlow – Personal Expense Management App
 - **Platform:** Android / Kotlin
+- **Student Name:** Maharsh Patel
+- **Enrollment No.:** 24012011102
+- **Batch:** H-1
+- **Branch:** CE
+- **Semester:** 5th
 - **Submission Date:** September 2026
