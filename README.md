@@ -15,6 +15,18 @@
 
 ---
 
+## 📸 Screenshots
+
+| Dashboard (Empty) | Dashboard (Transactions) |
+|:---:|:---:|
+| <img src="screenshots/dashboard_empty.png" width="300" /> | <img src="screenshots/dashboard_list.png" width="300" /> |
+
+| Expense Analytics | Delete Confirmation |
+|:---:|:---:|
+| <img src="screenshots/analytics_graph.png" width="300" /> | <img src="screenshots/delete_dialog.png" width="300" /> |
+
+---
+
 ## 🛠️ Tech Stack & Architecture
 
 - **Language:** Kotlin (100%)
