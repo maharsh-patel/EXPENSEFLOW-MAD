@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    tools:context=".Graph">
+
+    <!-- Screen title -->
+    <TextView
+        android:id="@+id/graph_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Expense Analytics"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#1A237E"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/graph_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Spending by category"
+        android:textSize="13sp"
+        android:textColor="#757575"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintTop_toBottomOf="@id/graph_title"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Bar Chart -->
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toBottomOf="@id/graph_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_bar" />
+
+    <!-- Empty state for chart -->
+    <TextView
+        android:id="@+id/chart_empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No expense data yet.\nAdd transactions to see your analytics."
+        android:textSize="14sp"
+        android:textColor="#9E9E9E"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/graph_subtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_bar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
