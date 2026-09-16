@@ -231,7 +231,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:backgroundTint="#1A237E"
+        android:backgroundTint="#FFD600"
         app:layout_constraintTop_toBottomOf="@id/card_4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
