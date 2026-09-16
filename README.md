@@ -76,6 +76,25 @@ The resulting APK is generated at:
 
 ---
 
+## 🏗️ Technical Architecture Details
+
+The application implements a decoupled, modern architecture following official Android developer guidelines:
+
+### 1. MVVM Implementation
+- **View (`MainActivity`, `AddExpenses`, `Graph`):** Observes data states and manages UI interactions cleanly with zero business logic.
+- **ViewModel (`TransactionViewModel`):** Acts as the communication bridge, handling background transaction operations asynchronously inside `viewModelScope`.
+- **Repository (`TransactionRepository`):** Provides an abstraction layer separating database operations from the presentation layer.
+
+### 2. Local Database & State Persistence
+- **Room Database (`AppDatabase`):** Provides a robust local cache utilizing fully reactive SQL queries (`TransactionDao`) for storing user entries permanently.
+- **Shared Preferences (`BalancePrefs`):** Stores user custom wallet limits synchronously across sessions to compute available funding accurately.
+
+### 3. Key Library Implementations
+- **MPAndroidChart Integration:** Custom X-axis configurations map text titles to coordinate offsets dynamically while drawing real-time visual vectors down the screen bounds.
+- **AmbilWarna integration:** Hooks simple RGB pixel transformations straight into dynamic custom backgrounds of list elements.
+
+---
+
 ## 📄 Submission Information
 
 - **Project Name:** ExpenseFlow – Personal Expense Management App
